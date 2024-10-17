@@ -1,8 +1,10 @@
 package org.example;
 
+import java.lang.reflect.Array;
+
 public class Main {
     public static void main(String[] args) {
-        String[] myLine = {"Hello", "from", "the", "other", "side!"};
+        String[] myLine = {"Hello", "from", "the", "other", "side!", "ᓚᘏᗢ"};
 
         // Reverse by word
         ArrayStack<String> stack = new ArrayStack<>();
@@ -25,10 +27,18 @@ public class Main {
             System.out.print(charStack.pop());
         }
         System.out.println();
+
+        // Test equals() override
+        ArrayStack<String> testStack = new ArrayStack<>();
+        for (String s : myLine)
+            testStack.push(s);
+        System.out.println("Stack = testStack? " + stack.equals(testStack));
+
+        // Test static equals() & clone()
+        stack = testStack.clone();
+        System.out.println("Stack = testStack? " + ArrayStack.equals(stack, testStack));
     }
 }
-
-// ᓚᘏᗢ
 
 /* O(n) time complexity
  *

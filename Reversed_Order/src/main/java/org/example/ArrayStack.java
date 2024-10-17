@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 class ArrayStack<E> implements Cloneable {
@@ -57,5 +58,54 @@ class ArrayStack<E> implements Cloneable {
         String str = "";
         for (int i = 0; i < manyItems; i++) { str += data[i].toString() + " "; }
         return str;
+    }
+
+    @Override
+    public boolean equals(Object compare) {
+        if (compare.getClass() != this.getClass()) {
+            throw new ClassCastException();
+        }
+
+        ArrayStack<E> stack = (ArrayStack<E>) compare;
+
+        if (this.size() != stack.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < this.manyItems; i++) {
+            if (!this.data[i].equals(stack.data[i])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static <E> boolean equals(ArrayStack<E> stack1, ArrayStack<E> stack2) {
+        if (stack1.size() != stack2.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < stack1.manyItems; i++) {
+            if (!stack1.data[i].equals(stack2.data[i])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public ArrayStack<E> clone() {
+        try {
+            ArrayStack<E> clone = (ArrayStack<E>) super.clone();
+
+            clone.data = this.data;
+            clone.manyItems = this.manyItems;
+
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
