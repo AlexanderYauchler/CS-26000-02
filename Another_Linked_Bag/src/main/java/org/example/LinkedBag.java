@@ -109,8 +109,6 @@ public class LinkedBag <E extends Comparable<E> & Cloneable> implements Cloneabl
         LinkedNode<E> cursor = head;
         LinkedNode<E> prev = null;
 
-
-
         while (true) {
             if (cursor == null) { break; }
 

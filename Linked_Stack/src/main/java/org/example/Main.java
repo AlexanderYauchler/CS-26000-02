@@ -2,7 +2,7 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        String s = "racecar";
+        String s = "baller";
         LinkedStack<Character> myStack = new LinkedStack<Character>();
         System.out.println(s);
 
@@ -26,13 +26,13 @@ public class Main {
         StringBuilder flippedWord = new StringBuilder();
         while (!flipped.isEmpty())
             flippedWord.append(flipped.pop());
-        System.out.println("Flipped : " + flippedWord);
 
         // Build new stacks
         for (int i = 0; i < s.length(); i++)
             myStack.push(s.charAt(i));
 
         flipped = myStack.flip();
+        System.out.println("Flipped : " + flippedWord);
 
         // Test equals()
         System.out.println("Original == Flipped: " + LinkedStack.equals(myStack, flipped));
