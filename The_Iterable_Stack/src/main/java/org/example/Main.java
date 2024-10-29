@@ -26,7 +26,7 @@ public class Main {
         stack.push(new Position3D());
         stack.push(new Position3D());
 
-        StackIterator<Position3D> it = stack.getIterator();
+        LinkedStack.StackIterator<Position3D> it = stack.getIterator();
 
         while (it.hasNext()) {
             Position3D obj = it.next();
