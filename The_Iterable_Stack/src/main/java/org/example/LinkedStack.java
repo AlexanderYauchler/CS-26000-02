@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
-class LinkedStack<E> implements Cloneable {
+class LinkedStack<E> implements Cloneable, Iterable<E> {
     private Node<E> top;
 
     private StackIterator<E> iterator;
@@ -44,6 +44,11 @@ class LinkedStack<E> implements Cloneable {
             throw new EmptyStackException();
 
         return iterator;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new StackIterator<>(top);
     }
 
     public static class StackIterator<E> implements Iterator<E> {

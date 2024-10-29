@@ -12,6 +12,7 @@ public class Main {
 
         // Create flipped stack
         LinkedStack<Character> flipped = myStack.flip();
+        LinkedStack<Character> flipped2 = flipped.flip();
 
         // Build stack into string
         StringBuilder myWord = new StringBuilder();
@@ -24,15 +25,16 @@ public class Main {
 
         // Test flipped stack
         StringBuilder flippedWord = new StringBuilder();
-        while (!flipped.isEmpty())
-            flippedWord.append(flipped.pop());
+        while (!flipped2.isEmpty())
+            flippedWord.append(flipped2.pop());
 
-        // Build new stacks
+        System.out.println("Flipped : " + flippedWord);
+
+        // Build new stack
         for (int i = 0; i < s.length(); i++)
             myStack.push(s.charAt(i));
 
         flipped = myStack.flip();
-        System.out.println("Flipped : " + flippedWord);
 
         // Test equals()
         System.out.println("Original == Flipped: " + LinkedStack.equals(myStack, flipped));

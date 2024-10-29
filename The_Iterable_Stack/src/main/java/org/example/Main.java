@@ -33,6 +33,11 @@ public class Main {
             System.out.println("[" + obj.getX() + ", " + obj.getY() + ", " + obj.getZ() + "]");
         }
 
+        // Test using enhanced for loop
+        for (Position3D obj : stack) {
+            System.out.println("[" + obj.getX() + ", " + obj.getY() + ", " + obj.getZ() + "]");
+        }
+
         try {
             stack.peek();
         } catch (EmptyStackException e) {
