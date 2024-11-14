@@ -2,13 +2,19 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        String s = "baller";
+        String s = "radar";
         LinkedStack<Character> myStack = new LinkedStack<Character>();
         System.out.println(s);
 
         // Build string into stack
         for (int i = 0; i < s.length(); i++)
             myStack.push(s.charAt(i));
+
+        // Test display()
+        myStack.display();
+
+        // Test size()
+        System.out.println("Stack Size vs Word Size: " + myStack.size() + " vs " + s.length());
 
         // Create flipped stack
         LinkedStack<Character> flipped = myStack.flip();
@@ -19,9 +25,6 @@ public class Main {
         while (!myStack.isEmpty())
             myWord.append(myStack.pop());
         System.out.println(myWord);
-
-        // Text against original value
-        System.out.println(s.equals(myWord.toString()));
 
         // Test flipped stack
         StringBuilder flippedWord = new StringBuilder();

@@ -31,6 +31,7 @@ class ArrayQueue<E> implements Cloneable {
     public void ensureCapacity(int minimumCapacity) {
         E[] biggerArray;
         int n1, n2;
+
         if (data.length >= minimumCapacity)
             return;
         else if (manyItems == 0)
@@ -74,7 +75,29 @@ class ArrayQueue<E> implements Cloneable {
 
     // O(1) time complexity
     public int size() {
-        return rear == front ? 0 : Math.abs(rear - front) + 1;
+        if (rear < front) {
+            return (data.length - front) + (rear + 1);
+        }
+
+        if (rear > front) {
+            return rear - front + 1;
+        }
+
+        return manyItems == 0 ? 0 : manyItems;
+    }
+
+    // O(n) time complexity
+    public boolean equals(ArrayQueue<E> queue) {
+        if (this.manyItems != queue.manyItems) {
+            return false;
+        }
+
+        int pos;
+        while (true) {
+            if ()
+        }
+
+        return true;
     }
 }
 

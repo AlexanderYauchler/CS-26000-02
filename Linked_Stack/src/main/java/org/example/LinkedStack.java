@@ -35,12 +35,15 @@ class LinkedStack<E> implements Cloneable {
     }
 
     public void display() {
+        System.out.print("[ ");
+
         Node<E> current = top;
         while (current != null) {
             System.out.print(current.getData() + " ");
             current = current.getLink();
         }
-        System.out.println();
+
+        System.out.println("]");
     }
 
     // O(n) time complexity
@@ -77,5 +80,17 @@ class LinkedStack<E> implements Cloneable {
         }
 
         return true;
+    }
+
+    public int size() {
+        int size = 0;
+
+        Node<E> cursor = top;
+        while (cursor != null) {
+            size++;
+            cursor = cursor.getLink();
+        }
+
+        return size;
     }
 }

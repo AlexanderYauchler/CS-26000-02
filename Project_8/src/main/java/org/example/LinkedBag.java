@@ -1,6 +1,5 @@
 package org.example;
 
-import java.sql.Array;
 import java.util.*;
 
 public class LinkedBag <E extends Comparable<E>> implements Cloneable {
@@ -15,6 +14,39 @@ public class LinkedBag <E extends Comparable<E>> implements Cloneable {
     public void add(E element) {
         head = new Node<>(element, head);
         manyNodes++;
+    }
+
+    // O(n) time complexity
+    public void addBefore(E add, E target) {
+        Node<E> current = head;
+        Node<E> prev = null;
+
+        // Empty list
+        if (manyNodes == 0) {
+            throw new NullPointerException();
+        }
+
+        // Start of list
+        if (head.getData().equals(target)) {
+            add(add);
+            return;
+        }
+
+        Node<E> addNode = new Node<>(add, null);
+        do {
+            if (prev != null && current.getData().equals(target)) {
+                addNode.setLink(current);
+                manyNodes++;
+                prev.setLink(addNode);
+                return;
+            }
+
+            prev = current;
+            current = current.getLink();
+        } while (current != null);
+
+        // Target node does not exist
+        throw new NullPointerException();
     }
 
     public int countOccurrences(E target) {
@@ -64,6 +96,35 @@ public class LinkedBag <E extends Comparable<E>> implements Cloneable {
         for (E element : append) {
             System.out.println(element.toString() + " ");
         }
+    }
+
+    public void print() {
+        Node<E> current = head;
+        while (current != null) {
+            System.out.println(current.getData() + " ");
+            current = current.getLink();
+        }
+    }
+
+    // O(n) time complexity
+    public boolean equals(LinkedBag<E> otherBag) {
+        if (this.manyNodes != otherBag.manyNodes) {
+            return false;
+        }
+
+        Node<E> current = head;
+        Node<E> currentB = otherBag.head;
+
+        while (current != null) {
+            if (!current.getData().equals(currentB.getData())) {
+                return false;
+            }
+
+            current = current.getLink();
+            currentB = currentB.getLink();
+        }
+
+        return true;
     }
 
     // O(2N) Time Complexity or O(N + M)

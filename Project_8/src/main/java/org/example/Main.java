@@ -37,5 +37,28 @@ public class Main {
 
         // Test printReversed()
         posBagB.printReversed();
+
+        System.out.println();
+
+        // Test addBefore()
+        LinkedBag<Position3D> bagA = new LinkedBag<>();
+        bagA.add(new Position3D(0, 0, 0));
+        bagA.add(new Position3D(10, 10, 10));
+        bagA.add(new Position3D(20, 20, 20));
+        System.out.println("bagA Contents:");
+        bagA.print();
+
+        System.out.println();
+
+        LinkedBag<Position3D> bagB = new LinkedBag<>();
+        bagB.add(new Position3D(0, 0, 0));
+        bagB.add(new Position3D(20, 20, 20));
+        bagB.addBefore(new Position3D(10, 10, 10), new Position3D(0, 0, 0));
+        System.out.println("bagB Contents:");
+        bagB.print();
+
+        // Test equals()
+        System.out.println();
+        System.out.println("bagA == bagB: " + bagA.equals(bagB));
     }
 }
