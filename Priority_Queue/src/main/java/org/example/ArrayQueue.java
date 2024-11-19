@@ -73,6 +73,12 @@ class ArrayQueue<E> implements Cloneable {
         return answer;
     }
 
+    public E peek() {
+        if (manyItems == 0)
+            throw new NoSuchElementException("Queue underflow");
+        return data[front];
+    }
+
     // O(1) time complexity
     public int size() {
         if (rear < front) {
@@ -84,6 +90,32 @@ class ArrayQueue<E> implements Cloneable {
         }
 
         return manyItems == 0 ? 0 : manyItems;
+    }
+
+    public void print() {
+        System.out.print("[");
+
+        int index = front;
+        for (int i = 0; i < manyItems; i++) {
+            System.out.print(data[index] + "\n");
+            index = nextIndex(index + 1);
+        }
+
+        System.out.print("]");
+    }
+
+    @Override
+    public ArrayQueue<E> clone() {
+        try {
+            ArrayQueue<E> cloned = (ArrayQueue<E>) super.clone();
+
+            cloned.data = (E[]) new Object[data.length];
+            System.arraycopy(this.data, 0, cloned.data, 0, this.data.length);
+
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning not supported", e);
+        }
     }
 }
 
